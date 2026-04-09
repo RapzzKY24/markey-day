@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${barlowCondensed.className} ${poppins.variable} ${londrina.variable} h-full antialiased`}
+      className={`${barlowCondensed.className} ${poppins.variable} ${londrina.variable} ${barrio.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <LoadingScreen />
