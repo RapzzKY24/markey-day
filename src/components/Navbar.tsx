@@ -1,14 +1,23 @@
 "use client";
 import Link from "next/link";
-import { MenuIcon, XIcon } from "lucide-react";
+import {
+  MenuIcon,
+  XIcon,
+  Home,
+  Info,
+  ShoppingBag,
+  Users,
+  ShoppingCart,
+  Search,
+} from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
 
 const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Product", href: "/products" },
-  { name: "Team", href: "/team" },
+  { name: "Home", href: "/", icon: Home },
+  { name: "About Us", href: "/about", icon: Info },
+  { name: "Product", href: "/products", icon: ShoppingBag },
+  { name: "Team", href: "/team", icon: Users },
 ];
 
 const Navbar = () => {
@@ -19,12 +28,12 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6">
-      <nav className="w-full max-w-7xl backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl shadow-sm transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center bg-white">
+      <nav className="w-full backdrop-blur-md px-5 py-3 border-b-3 border-b-black shadow-sm transition-all duration-300">
         <div className="flex items-center justify-between gap-4">
           {/* header */}
-          <Link href="/" className="flex items-center md:gap-3 group">
-            <div className="relative w-16 h-16 md:w-20 md:h-20">
+          <Link href="/" className="flex items-center  group">
+            <div className="relative w-16 h-16 md:w-24 md:h-24">
               <Image
                 src="/logo.png"
                 alt="Logo Mac And Yuk"
@@ -33,17 +42,18 @@ const Navbar = () => {
                 priority
               />
             </div>
-            <span className="text-lg md:text-xl font-bold tracking-tight text-secondary group-hover:text-primary transition-colors">
+            <h1 className="text-3xl md:text-4xl font-bold font-barlow tracking-tight text-primary  transition-colors">
               Mac And Yuk
-            </span>
+            </h1>
           </Link>
           <ul className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-xl text-primary/80  transition-colors font-semibold hover:text-primary"
                 >
+                  <link.icon className="w-5 h-5" />
                   {link.name}
                 </Link>
               </li>
@@ -52,11 +62,17 @@ const Navbar = () => {
           {/* button desktop */}
           <div className=" hidden md:block">
             <div className="flex items-center gap-4">
-              <button className="px-2 py-3 bg-primary rounded-md hover:bg-primary/80 transition-all duration-300 ease-in-out">
-                <h1 className="font-base ">Beli Sekarang</h1>
+              <button className="flex items-center justify-center gap-2 w-44 py-3 bg-primary rounded-md hover:bg-primary/80 transition-all duration-300 ease-in-out group/btn1">
+                <ShoppingCart className="w-5 h-5 text-white" />
+                <h1 className="text-lg text-white font-light group-hover/btn1:font-bold transition-all">
+                  Beli Sekarang
+                </h1>
               </button>
-              <button className="px-2 py-3 bg-background outline outline-foreground rounded-md transition-all duration-300 ease-in-out">
-                <h1 className="font-base ">Cek Produk</h1>
+              <button className="flex items-center justify-center gap-2 w-44 py-3 bg-background outline outline-foreground rounded-md hover:bg-foreground/5 transition-all duration-300 ease-in-out group/btn2">
+                <Search className="w-5 h-5 text-primary" />
+                <h1 className="text-lg text-primary font-light group-hover/btn2:font-bold transition-all">
+                  Cek Produk
+                </h1>
               </button>
             </div>
           </div>
@@ -76,13 +92,14 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-semibold hover:text-primary"
+                className="flex items-center gap-3 text-lg font-semibold text-primary "
               >
+                <link.icon className="w-5 h-5" />
                 {link.name}
               </Link>
             ))}
             <hr className="border-foreground/5 my-2" />
-            <button className="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20">
+            <button className="w-full py-4 bg-primary text-white font-semibold rounded-xl shadow-lg shadow-primary/20">
               Cek Produk
             </button>
           </div>
