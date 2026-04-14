@@ -284,17 +284,17 @@ export const FloatingShapes = () => {
 
       {/* Yakult Float */}
       <div className="absolute top-[75%] md:top-[80%] -left-2 md:left-[10%] lg:left-[15%] animate-[float_7s_ease-in-out_infinite_1s] opacity-90 drop-shadow-xl z-20">
-        <Yakult className="rotate-[10deg] scale-75 md:scale-100 lg:scale-110 origin-center" />
+        <Yakult className="rotate-10 scale-75 md:scale-100 lg:scale-110 origin-center" />
       </div>
 
       {/* Cheese Float */}
       <div className="md:block hidden absolute top-[4%] md:top-[14%] lg:top-[20%] -right-2 md:right-[5%] lg:right-[15%] animate-[float_8s_ease-in-out_infinite_2s] opacity-90 drop-shadow-xl">
-        <Cheese className="rotate-[25deg] scale-75 md:scale-100 lg:scale-125 origin-center" />
+        <Cheese className="rotate-25 scale-75 md:scale-100 lg:scale-125 origin-center" />
       </div>
 
       {/* Es Teh Float */}
       <div className="absolute top-[65%] md:top-[70%] -right-4 md:right-[5%] lg:right-[10%] animate-[float_6.5s_ease-in-out_infinite_0.5s] opacity-90 drop-shadow-xl z-20">
-        <EsTeh className="rotate-[-10deg] scale-75 md:scale-100 lg:scale-110 origin-center" />
+        <EsTeh className="rotate-10 scale-75 md:scale-100 lg:scale-110 origin-center" />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const ProductCard = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-nowrap gap-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-auto pb-10 scrollbar-hide px-6">
+      <div className="flex flex-nowrap gap-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-auto pb-10 scrollbar-hide">
         {products.map((num) => (
           <motion.div
             key={num}
