@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const NAV_LINKS = [
   { name: "Home", href: "/", icon: Home },
@@ -62,27 +63,38 @@ const Navbar = () => {
           {/* button desktop */}
           <div className="hidden lg:block">
             <div className="flex items-center gap-4">
-              <button className="flex items-center justify-center gap-2 w-32 xl:w-44 py-2 xl:py-3 bg-primary rounded-md hover:bg-primary/80 transition-all duration-300 ease-in-out group/btn1">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center justify-center gap-2 w-32 xl:w-44 py-2 xl:py-3 bg-primary rounded-md hover:bg-primary/80"
+              >
                 <ShoppingCart className="w-4 h-4 xl:w-5 xl:h-5 text-white" />
-                <h1 className="text-sm xl:text-lg text-white font-light group-hover/btn1:font-bold transition-all whitespace-nowrap">
+                <h1 className="text-sm xl:text-lg text-white font-light transition-all whitespace-nowrap">
                   Beli Sekarang
                 </h1>
-              </button>
-              <button className="flex items-center justify-center gap-2 w-32 xl:w-44 py-2 xl:py-3 bg-background outline outline-foreground rounded-md hover:bg-foreground/5 transition-all duration-300 ease-in-out group/btn2">
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center justify-center gap-2 w-32 xl:w-44 py-2 xl:py-3 bg-background outline outline-foreground rounded-md hover:bg-foreground/5 transition-all duration-300 ease-in-out group/btn2"
+              >
                 <Search className="w-4 h-4 xl:w-5 xl:h-5 text-primary" />
                 <h1 className="text-sm xl:text-lg text-primary font-light group-hover/btn2:font-bold transition-all whitespace-nowrap">
                   Cek Produk
                 </h1>
-              </button>
+              </motion.button>
             </div>
           </div>
           {/* mobile & small tablet toggle */}
           <div className="md:hidden block">
             <button onClick={handleClick} className="p-2">
-              {isOpen ? <XIcon className="w-8 h-8" /> : <MenuIcon className="w-8 h-8" />}
+              {isOpen ? (
+                <XIcon className="w-8 h-8" />
+              ) : (
+                <MenuIcon className="w-8 h-8" />
+              )}
             </button>
           </div>
-          {/* mobile */}
         </div>
         {/* Mobile Menu Overlay */}
         {isOpen && (
