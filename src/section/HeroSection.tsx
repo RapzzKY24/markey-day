@@ -1,4 +1,3 @@
-"use client";
 import { FloatingShapes } from "../components/FloatingShapes";
 import { motion } from "framer-motion";
 import { Marquee } from "../components/Marquee";

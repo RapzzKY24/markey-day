@@ -3,7 +3,7 @@ import React from "react";
 
 type HeaderSectionProps = {
   title: string[];
-  description: string;
+  description?: string;
 };
 
 const HeaderSection = ({ title, description }: HeaderSectionProps) => {
@@ -56,7 +56,7 @@ const HeaderSection = ({ title, description }: HeaderSectionProps) => {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold font-poppins tracking-[0.1rem] sm:tracking-[0.2rem] uppercase text-center"
+              className="text-4xl sm:text-6xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-poppins tracking-[0.1rem] sm:tracking-[0.2rem] uppercase text-center"
             >
               {word}
             </motion.h1>

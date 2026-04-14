@@ -53,7 +53,7 @@ const AboutSection = () => {
   return (
     <div className="relative w-full flex flex-col overflow-hidden">
       <div className="container mx-auto px-6 py-8 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* TODO: Replace with actual image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
