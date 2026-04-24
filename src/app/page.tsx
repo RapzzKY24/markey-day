@@ -37,7 +37,7 @@ export default function Home() {
           <FeatureSection />
         </div>
       </div>
-      <div className="relative w-full overflow-hidden bg-secondary/20">
+      {/* <div className="relative w-full overflow-hidden bg-secondary/20">
         <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
           <HeaderSection
             title={["Order", "Mac", "N", "Yuk?"]}
@@ -45,7 +45,7 @@ export default function Home() {
           />
           <HowOrderSection />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
