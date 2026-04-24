@@ -36,7 +36,7 @@ export default function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-primary transition-all duration-500 ease-in-out ${
+      className={`fixed inset-0 z-100 flex flex-col items-center justify-center bg-primary transition-all duration-500 ease-in-out ${
         isFading ? "opacity-0 invisible" : "opacity-100 visible"
       }`}
     >

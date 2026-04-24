@@ -1,33 +1,49 @@
-import { FloatingShapes } from "../components/FloatingShapes";
+"use client";
+import HeaderSection from "../components/HeaderSection";
+import AboutSection from "../section/AboutSection";
+import HeroPages from "../section/HeroSection";
+import ProductSection from "../section/ProductSection";
+import FeatureSection from "../section/FeatureSection";
+import HowOrderSection from "../section/HowOrderSection";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full  flex items-center justify-center overflow-hidden bg-primary/85">
-      <FloatingShapes />
-      <div className="relative z-10 container mx-auto p-6 flex items-center justify-center">
-        <div className="flex flex-col justify-center items-center text-center gap-y-4 max-w-4xl mx-auto z-10 pt-10">
-          {/* Main Title */}
-          <div className="relative mb-4 space-y-6">
-            <h1
-              className="text-[5rem] leading-none md:text-[10rem] font-bold font-londrina text-secondary uppercase tracking-widest transition-transform duration-500 ease-in-out cursor-default"
-              style={{ filter: "drop-shadow(6px 8px 0px #171717)" }}
-            >
-              Mac & Yuk
-            </h1>
-            <h1
-              className="relative text-5xl leading-none md:text-8xl font-bold font-londrina text-white uppercase tracking-tighter transition-all duration-300 ease-out cursor-default hover:scale-105 hover:-rotate-1"
-              style={{
-                filter: "drop-shadow(6px 8px 0px #171717)",
-                WebkitTextStroke: "1px #171717",
-              }}
-            >
-              Your Next <br />
-              <span className="relative inline-block text-secondary transform -rotate-2 bg-white px-4 py-1 mt-2 shadow-[4px_4px_0px_#171717]">
-                Comfort
-              </span>
-              <span className="block md:inline ml-2"> Snack</span>
-            </h1>
-          </div>
+    <div className="pb-30">
+      <HeroPages />
+      <div className="relative w-full bg-white/50 overflow-hidden">
+        <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
+          <HeaderSection
+            title={["Mac", "And", "Yuk"]}
+            description="Tentang Kami"
+          />
+        </div>
+        <AboutSection />
+      </div>
+      <div className="relative w-full bg-secondary/20 overflow-hidden">
+        <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
+          <HeaderSection
+            title={["Produk", "Kami"]}
+            description="Cek koleksi snack premium kami"
+          />
+          <ProductSection />
+        </div>
+      </div>
+      <div className="relative w-full overflow-hidden bg-white/50">
+        <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
+          <HeaderSection
+            title={["Kenapa", "Memilih", "Mac", "N", "Yuk?"]}
+            description="Pilihan Terbaik Untuk Snack Anda"
+          />
+          <FeatureSection />
+        </div>
+      </div>
+      <div className="relative w-full overflow-hidden bg-secondary/20">
+        <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
+          <HeaderSection
+            title={["Order", "Mac", "N", "Yuk?"]}
+            description="Gimana Cara Pesennya?"
+          />
+          <HowOrderSection />
         </div>
       </div>
     </div>
