@@ -45,63 +45,6 @@ const Macaroni = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const Yakult = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" width="80" height="80" className={className}>
-    {/* Authentic Yakult Bottle Shape */}
-    {/* Base bottle */}
-    <path
-      d="M 35 20 L 65 20 L 65 30 C 65 38 55 42 55 50 C 55 55 68 60 68 90 C 68 93 65 95 50 95 C 35 95 32 93 32 90 C 32 60 45 55 45 50 C 45 42 35 38 35 30 Z"
-      fill="#FDE0C1"
-    />
-    {/* Red label area */}
-    <path
-      d="M 32 65 C 32 60 45 58 50 58 C 55 58 68 60 68 65 L 68 90 C 68 93 65 95 50 95 C 35 95 32 93 32 90 Z"
-      fill="#EF4444"
-    />
-    {/* Foil Lid */}
-    <ellipse cx="50" cy="20" rx="16" ry="4" fill="#D1D5DB" />
-    <path d="M 34 20 L 66 20 L 64 24 L 36 24 Z" fill="#9CA3AF" />
-
-    {/* Yakult Text Label */}
-    <rect x="38" y="70" width="24" height="12" rx="3" fill="#ffffff" />
-    <text
-      x="50"
-      y="79"
-      fill="#EF4444"
-      fontSize="9"
-      fontWeight="900"
-      textAnchor="middle"
-      fontFamily="sans-serif"
-    >
-      YUK
-    </text>
-
-    {/* Bottle Highlight */}
-    <path
-      d="M 38 35 C 38 38 48 42 48 50 C 48 52 46 55 38 65"
-      stroke="#ffffff"
-      strokeOpacity="0.6"
-      strokeWidth="3"
-      strokeLinecap="round"
-      fill="none"
-    />
-
-    {/* Cute Face */}
-    <circle cx="43" cy="42" r="3.5" fill="#4B2110" />
-    <circle cx="57" cy="42" r="3.5" fill="#4B2110" />
-    <path
-      d="M 47 46 Q 50 49 53 46"
-      fill="none"
-      stroke="#4B2110"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-    {/* Blush */}
-    <circle cx="37" cy="45" r="3" fill="#F472B6" />
-    <circle cx="63" cy="45" r="3" fill="#F472B6" />
-  </svg>
-);
-
 const Cheese = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" width="85" height="85" className={className}>
     {/* Side Depth */}
@@ -280,11 +223,6 @@ export const FloatingShapes = () => {
       {/* Macaroni Float */}
       <div className="md:block hidden absolute top-[2%] md:top-[12%] lg:top-[18%] -left-4 md:left-[5%] lg:left-[10%] animate-[float_6s_ease-in-out_infinite] opacity-90 drop-shadow-xl will-change-transform transform-gpu">
         <Macaroni className="rotate-[-15deg] scale-75 md:scale-100 lg:scale-125 origin-center" />
-      </div>
-
-      {/* Yakult Float */}
-      <div className="absolute top-[75%] md:top-[80%] -left-2 md:left-[10%] lg:left-[15%] animate-[float_7s_ease-in-out_infinite_1s] opacity-90 drop-shadow-xl z-20 will-change-transform transform-gpu">
-        <Yakult className="rotate-10 scale-75 md:scale-100 lg:scale-110 origin-center" />
       </div>
 
       {/* Cheese Float */}
