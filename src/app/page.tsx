@@ -4,7 +4,8 @@ import AboutSection from "../section/AboutSection";
 import HeroPages from "../section/HeroSection";
 import ProductSection from "../section/ProductSection";
 import FeatureSection from "../section/FeatureSection";
-import HowOrderSection from "../section/HowOrderSection";
+import TeamSection from "../section/TeamSection";
+import FaqSection from "../section/FaqSection";
 import AnnouncementModal from "../components/AnnouncementModal";
 
 export default function Home() {
@@ -23,7 +24,10 @@ export default function Home() {
         </div>
         <AboutSection />
       </div>
-      <div id="products" className="relative w-full bg-secondary/20 overflow-hidden">
+      <div
+        id="products"
+        className="relative w-full bg-secondary/20 overflow-hidden"
+      >
         <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
           <HeaderSection
             title={["Produk", "Kami"]}
@@ -32,7 +36,10 @@ export default function Home() {
           <ProductSection />
         </div>
       </div>
-      <div id="team" className="relative w-full overflow-hidden bg-white/50">
+      <div
+        id="features"
+        className="relative w-full overflow-hidden bg-white/50"
+      >
         <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
           <HeaderSection
             title={["Kenapa", "Memilih", "Mac", "N", "Yuk?"]}
@@ -41,15 +48,22 @@ export default function Home() {
           <FeatureSection />
         </div>
       </div>
-      {/* <div className="relative w-full overflow-hidden bg-secondary/20">
+      <div id="team" className="relative w-full overflow-hidden bg-[#FDFBF7]">
+        <HeaderSection
+          title={["Our", "Executive", "Team"]}
+          description="Kenalan yuk sama orang dibalik layar"
+        />
+        <TeamSection />
+      </div>
+      <div id="faq" className="relative w-full overflow-hidden bg-secondary/10">
         <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
           <HeaderSection
-            title={["Order", "Mac", "N", "Yuk?"]}
-            description="Gimana Cara Pesennya?"
+            title={["Punya", "Pertanyaan?"]}
+            description="FAQ (Frequently Asked Questions)"
           />
-          <HowOrderSection />
         </div>
-      </div> */}
+        <FaqSection />
+      </div>
     </div>
   );
 }
