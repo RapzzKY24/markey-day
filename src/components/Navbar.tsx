@@ -12,7 +12,9 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import CartOverlay from "./CartOverlay";
+import { useCart } from "../context/CartContext";
 
 const NAV_LINKS = [
   { name: "Home", href: "/", icon: Home },
@@ -23,6 +25,8 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { totalItems } = useCart();
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -61,18 +65,8 @@ const Navbar = () => {
             ))}
           </ul>
           {/* button desktop */}
-          <div className="hidden lg:block">
-            <div className="flex items-center gap-4">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="flex items-center justify-center gap-2 w-32 xl:w-44 py-2 xl:py-3 bg-primary rounded-md hover:bg-primary/80"
-              >
-                <ShoppingCart className="w-4 h-4 xl:w-5 xl:h-5 text-white" />
-                <h1 className="text-sm xl:text-lg text-white font-light transition-all whitespace-nowrap">
-                  Beli Sekarang
-                </h1>
-              </motion.button>
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -84,39 +78,77 @@ const Navbar = () => {
                 </h1>
               </motion.button>
             </div>
-          </div>
-          {/* mobile & small tablet toggle */}
-          <div className="md:hidden block">
-            <button onClick={handleClick} className="p-2">
-              {isOpen ? (
-                <XIcon className="w-8 h-8" />
-              ) : (
-                <MenuIcon className="w-8 h-8" />
+
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsCartOpen(true)}
+              className="relative flex items-center justify-center gap-2 px-4 md:w-32 xl:w-44 py-2 xl:py-3 bg-primary rounded-md hover:bg-primary/80 shadow-md transition-all"
+            >
+              <ShoppingCart className="w-5 h-5 text-white" />
+              <h1 className="hidden md:block text-sm xl:text-lg text-white font-light transition-all whitespace-nowrap">
+                Keranjang
+              </h1>
+              {totalItems > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] md:text-xs font-bold w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center border-2 border-white shadow-sm"
+                >
+                  {totalItems}
+                </motion.span>
               )}
-            </button>
+            </motion.button>
+
+            {/* mobile & small tablet toggle */}
+            <div className="md:hidden block">
+              <button onClick={handleClick} className="p-2">
+                {isOpen ? (
+                  <XIcon className="w-8 h-8" />
+                ) : (
+                  <MenuIcon className="w-8 h-8" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
         {/* Mobile Menu Overlay */}
-        {isOpen && (
-          <div className="absolute top-[calc(100%+12px)] left-0 right-0 bg-white border border-foreground/5 rounded-2xl p-6 shadow-xl md:hidden flex flex-col gap-4 animate-in fade-in zoom-in duration-200">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 text-lg font-semibold text-primary "
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-[calc(100%+12px)] left-0 right-0 bg-white border border-foreground/5 rounded-2xl p-6 shadow-xl md:hidden flex flex-col gap-4 z-40"
+            >
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-3 text-lg font-semibold text-primary "
+                >
+                  <link.icon className="w-5 h-5" />
+                  {link.name}
+                </Link>
+              ))}
+              <hr className="border-foreground/5 my-2" />
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsCartOpen(true);
+                }}
+                className="w-full py-4 bg-primary text-white font-semibold rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
               >
-                <link.icon className="w-5 h-5" />
-                {link.name}
-              </Link>
-            ))}
-            <hr className="border-foreground/5 my-2" />
-            <button className="w-full py-4 bg-primary text-white font-semibold rounded-xl shadow-lg shadow-primary/20">
-              Cek Produk
-            </button>
-          </div>
-        )}
+                <ShoppingCart className="w-5 h-5" />
+                Keranjang ({totalItems})
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
+
+      <CartOverlay isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 };

@@ -12,10 +12,10 @@ const HeroPages = () => {
   ];
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col overflow-hidden bg-[#FDFBF7]">
+    <section className="relative min-h-screen w-full flex flex-col overflow-hidden bg-[#FDFBF7] transform-gpu">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-40 will-change-transform"
           style={{
             backgroundImage: "url(/background.jpg)",
             backgroundSize: "600px",

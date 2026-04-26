@@ -278,22 +278,22 @@ export const FloatingShapes = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {/* Macaroni Float */}
-      <div className="md:block hidden absolute top-[2%] md:top-[12%] lg:top-[18%] -left-4 md:left-[5%] lg:left-[10%] animate-[float_6s_ease-in-out_infinite] opacity-90 drop-shadow-xl">
+      <div className="md:block hidden absolute top-[2%] md:top-[12%] lg:top-[18%] -left-4 md:left-[5%] lg:left-[10%] animate-[float_6s_ease-in-out_infinite] opacity-90 drop-shadow-xl will-change-transform transform-gpu">
         <Macaroni className="rotate-[-15deg] scale-75 md:scale-100 lg:scale-125 origin-center" />
       </div>
 
       {/* Yakult Float */}
-      <div className="absolute top-[75%] md:top-[80%] -left-2 md:left-[10%] lg:left-[15%] animate-[float_7s_ease-in-out_infinite_1s] opacity-90 drop-shadow-xl z-20">
+      <div className="absolute top-[75%] md:top-[80%] -left-2 md:left-[10%] lg:left-[15%] animate-[float_7s_ease-in-out_infinite_1s] opacity-90 drop-shadow-xl z-20 will-change-transform transform-gpu">
         <Yakult className="rotate-10 scale-75 md:scale-100 lg:scale-110 origin-center" />
       </div>
 
       {/* Cheese Float */}
-      <div className="md:block hidden absolute top-[4%] md:top-[14%] lg:top-[20%] -right-2 md:right-[5%] lg:right-[15%] animate-[float_8s_ease-in-out_infinite_2s] opacity-90 drop-shadow-xl">
+      <div className="md:block hidden absolute top-[4%] md:top-[14%] lg:top-[20%] -right-2 md:right-[5%] lg:right-[15%] animate-[float_8s_ease-in-out_infinite_2s] opacity-90 drop-shadow-xl will-change-transform transform-gpu">
         <Cheese className="rotate-25 scale-75 md:scale-100 lg:scale-125 origin-center" />
       </div>
 
       {/* Es Teh Float */}
-      <div className="absolute top-[65%] md:top-[70%] -right-4 md:right-[5%] lg:right-[10%] animate-[float_6.5s_ease-in-out_infinite_0.5s] opacity-90 drop-shadow-xl z-20">
+      <div className="absolute top-[65%] md:top-[70%] -right-4 md:right-[5%] lg:right-[10%] animate-[float_6.5s_ease-in-out_infinite_0.5s] opacity-90 drop-shadow-xl z-20 will-change-transform transform-gpu">
         <EsTeh className="rotate-10 scale-75 md:scale-100 lg:scale-110 origin-center" />
       </div>
     </div>

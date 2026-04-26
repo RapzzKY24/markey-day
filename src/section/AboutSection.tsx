@@ -22,10 +22,14 @@ const TypingText = ({ children }: { children: React.ReactNode }) => {
 
   const wrapText = (node: React.ReactNode): React.ReactNode => {
     if (typeof node === "string") {
-      return node.split("").map((char, index) => (
-        <motion.span key={index} variants={childVariants}>
-          {char}
-        </motion.span>
+      return node.split(" ").map((word, index) => (
+        <span key={index} className="inline-block whitespace-nowrap mr-[0.25em]">
+          {word.split("").map((char, charIndex) => (
+            <motion.span key={charIndex} variants={childVariants}>
+              {char}
+            </motion.span>
+          ))}
+        </span>
       ));
     }
     if (React.isValidElement(node)) {
