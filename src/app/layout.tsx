@@ -38,6 +38,8 @@ export const metadata: Metadata = {
 };
 
 import LoadingScreen from "../components/LoadingScreen";
+import { CartProvider } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 export default function RootLayout({
   children,
@@ -50,9 +52,14 @@ export default function RootLayout({
       className={`${barlowCondensed.className} ${poppins.variable} ${londrina.variable} ${barrio.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <LoadingScreen />
-        <Navbar />
-        {children}
+        <CartProvider>
+          <LoadingScreen />
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

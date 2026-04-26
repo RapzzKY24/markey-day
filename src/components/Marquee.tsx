@@ -21,7 +21,7 @@ export const Marquee: React.FC<MarqueeProps> = ({
       className={`relative w-full overflow-hidden bg-[#171717] py-3 md:py-5 flex items-center shadow-2xl ${className}`}
     >
       <motion.div
-        className="flex whitespace-nowrap items-center hover:[animation-play-state:paused]"
+        className="flex whitespace-nowrap items-center hover:[animation-play-state:paused] transform-gpu"
         initial={{ x: 0 }}
         animate={{ x: "-50%" }}
         transition={{
