@@ -100,7 +100,7 @@ const Footer = () => {
                     Lokasi
                   </p>
                   <p className="text-sm text-neutral-300 leading-snug">
-                    Telkom University Jakarta, Jakarta Barat
+                    Telkom University Jakarta Kampus B, Jakarta Selatan
                   </p>
                 </div>
               </div>
@@ -128,7 +128,7 @@ const Footer = () => {
                     Email
                   </p>
                   <p className="text-sm text-neutral-300 leading-snug">
-                    hello@macandyuk.com
+                    macandyuk@gmail.com
                   </p>
                 </div>
               </div>
