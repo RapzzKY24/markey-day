@@ -8,7 +8,6 @@ const HeroPages = () => {
     "Macaroni MPRUY",
     "Macaroni Schotel",
     "Es Teh Strawberry",
-    "Es Lemon Yakult Soda",
   ];
 
   return (

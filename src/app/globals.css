@@ -33,6 +33,12 @@
   }
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @layer utilities {
   /* Chrome, Safari, and Opera */
   .no-scrollbar::-webkit-scrollbar {

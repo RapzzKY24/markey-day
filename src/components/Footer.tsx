@@ -11,9 +11,9 @@ const FOOTER_LINKS = [
     title: "Navigasi",
     links: [
       { name: "Home", href: "/" },
-      { name: "About Us", href: "/about" },
-      { name: "Product", href: "/products" },
-      { name: "Team", href: "/team" },
+      { name: "About Us", href: "#about" },
+      { name: "Product", href: "#products" },
+      { name: "Team", href: "#team" },
     ],
   },
   {

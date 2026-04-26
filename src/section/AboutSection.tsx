@@ -23,7 +23,10 @@ const TypingText = ({ children }: { children: React.ReactNode }) => {
   const wrapText = (node: React.ReactNode): React.ReactNode => {
     if (typeof node === "string") {
       return node.split(" ").map((word, index) => (
-        <span key={index} className="inline-block whitespace-nowrap mr-[0.25em]">
+        <span
+          key={index}
+          className="inline-block whitespace-nowrap mr-[0.25em]"
+        >
           {word.split("").map((char, charIndex) => (
             <motion.span key={charIndex} variants={childVariants}>
               {char}
@@ -112,11 +115,6 @@ const AboutSection = () => {
                 <p className="text-sm md:text-base lg:text-[17px] font-light tracking-wide leading-relaxed text-neutral-700 text-justify">
                   Tak hanya makanan, Mac n Yuk juga menawarkan minuman segar
                   seperti
-                  <span className="font-bold font-londrina text-primary uppercase ">
-                    {" "}
-                    lemon yakult soda
-                  </span>{" "}
-                  dan{" "}
                   <span className="font-bold font-londrina text-primary uppercase ">
                     iced tea dengan strawberry jam
                   </span>{" "}

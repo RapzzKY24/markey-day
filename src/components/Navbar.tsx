@@ -17,10 +17,10 @@ import CartOverlay from "./CartOverlay";
 import { useCart } from "../context/CartContext";
 
 const NAV_LINKS = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "About Us", href: "/about", icon: Info },
-  { name: "Product", href: "/products", icon: ShoppingBag },
-  { name: "Team", href: "/team", icon: Users },
+  { name: "Home", href: "#home", icon: Home },
+  { name: "About Us", href: "#about", icon: Info },
+  { name: "Product", href: "#products", icon: ShoppingBag },
+  { name: "Team", href: "#team", icon: Users },
 ];
 
 const Navbar = () => {
@@ -32,12 +32,33 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        // Adding a slight offset for the fixed navbar
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+        setIsOpen(false);
+      }
+    }
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center bg-white">
-      <nav className="w-full backdrop-blur-md px-5 py-3 border-b-3 border-b-black shadow-sm transition-all duration-300">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 md:px-8">
+      <nav className="w-full max-w-7xl bg-white/90 backdrop-blur-md px-6 py-2 md:py-4 rounded-[2rem] shadow-xl border border-neutral-100 transition-all duration-300">
         <div className="flex items-center justify-between gap-4">
           {/* header */}
-          <Link href="/" className="flex items-center group">
+          <Link href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center group">
             <div className="relative w-12 h-12 md:w-16 lg:w-20 lg:h-20">
               <Image
                 src="/logo.png"
@@ -56,6 +77,7 @@ const Navbar = () => {
               <li key={link.name}>
                 <Link
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="flex items-center gap-2 text-lg lg:text-xl text-primary/80 transition-colors font-semibold hover:text-primary"
                 >
                   <link.icon className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -125,7 +147,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="flex items-center gap-3 text-lg font-semibold text-primary "
                 >
                   <link.icon className="w-5 h-5" />
