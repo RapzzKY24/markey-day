@@ -89,7 +89,7 @@ const AnnouncementModal = () => {
                 {/* Product Images */}
                 <div className="relative z-10 w-32 h-32 mr-[-20px]">
                   <Image
-                    src="/product4.png"
+                    src="/products/schotel.webp"
                     alt="Macaroni Schotel"
                     fill
                     className="object-contain drop-shadow-xl"
@@ -102,7 +102,7 @@ const AnnouncementModal = () => {
                 </div>
                 <div className="relative z-10 w-28 h-28 ml-[-10px]">
                   <Image
-                    src="/product1.png"
+                    src="/products/strawberry.webp"
                     alt="Es Strawberry"
                     fill
                     className="object-contain drop-shadow-xl"
