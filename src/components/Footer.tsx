@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
 
 const FOOTER_LINKS = [
   {
@@ -46,7 +45,7 @@ const Footer = () => {
             <Link href="/" className="flex items-center gap-3 mb-6 group w-fit">
               <div className="relative w-12 h-12 bg-white rounded-xl p-1 overflow-hidden transition-transform group-hover:rotate-12">
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="Logo Mac And Yuk"
                   fill
                   className="object-contain p-1"
