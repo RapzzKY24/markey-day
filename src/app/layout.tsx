@@ -55,9 +55,7 @@ export default function RootLayout({
         <CartProvider>
           <LoadingScreen />
           <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
+          <main className="grow">{children}</main>
           <Footer />
         </CartProvider>
       </body>

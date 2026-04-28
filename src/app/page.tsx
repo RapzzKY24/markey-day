@@ -4,7 +4,6 @@ import AboutSection from "../section/AboutSection";
 import HeroPages from "../section/HeroSection";
 import ProductSection from "../section/ProductSection";
 import FeatureSection from "../section/FeatureSection";
-import TeamSection from "../section/TeamSection";
 import FaqSection from "../section/FaqSection";
 import AnnouncementModal from "../components/AnnouncementModal";
 
@@ -48,13 +47,13 @@ export default function Home() {
           <FeatureSection />
         </div>
       </div>
-      <div id="team" className="relative w-full overflow-hidden bg-[#FDFBF7]">
+      {/* <div id="team" className="relative w-full overflow-hidden bg-[#FDFBF7]">
         <HeaderSection
           title={["Our", "Executive", "Team"]}
           description="Kenalan yuk sama orang dibalik layar"
         />
         <TeamSection />
-      </div>
+      </div> */}
       <div id="faq" className="relative w-full overflow-hidden bg-secondary/10">
         <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
           <HeaderSection

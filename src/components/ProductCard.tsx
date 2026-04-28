@@ -9,35 +9,47 @@ import ProductModal from "./ProductModal";
 const PRODUCTS = [
   {
     id: 1,
-    name: "Es Strawberry",
-    price: 12000,
-    category: "Minuman",
-    image: "/product1.png",
-    description: "Kesegaran buah strawberry asli dipadu dengan susu segar dan es yang dingin",
-  },
-  {
-    id: 3,
-    name: "Macaroni Mpruy",
-    price: 15000,
+    name: "Bundle Macaroni Schotel & Es Teh Strawberry",
+    price: 20000,
     category: "Makanan",
-    image: "/product3.png",
-    description: "Macaroni pedas renyah untuk you, diolah dengan bumbu rahasia yang bikin nagih",
+    image: "/products/bundle.webp",
+    description: "Bundle Hemat dengan 2 produk yang disajikan bersama",
   },
   {
-    id: 4,
+    id: 2,
     name: "Macaroni Schotel",
     price: 25000,
     category: "Makanan",
-    image: "/product4.png",
-    description: "Macaroni panggang dengan balutan saus creamy, daging, dan keju yang melimpah",
+    image: "/products/schotel.webp",
+    description:
+      "Macaroni panggang dengan balutan saus creamy, daging, dan keju yang melimpah",
+  },
+  {
+    id: 3,
+    name: "Macaroni n Cheese",
+    price: 20000,
+    category: "Makanan",
+    image: "/products/cheese.webp",
+    description:
+      "Sentuhan klasik macaroni dengan saus keju yang lumer dan gurih di setiap suapan",
+  },
+  {
+    id: 1,
+    name: "Macaroni Mpruy",
+    price: 10000,
+    category: "Makanan",
+    image: "/product3.png",
+    description:
+      "Macaroni pedas renyah untuk you, diolah dengan bumbu rahasia yang bikin nagih",
   },
   {
     id: 5,
-    name: "Macaroni n Cheese",
-    price: 25000,
-    category: "Makanan",
-    image: "/product5.png",
-    description: "Sentuhan klasik macaroni dengan saus keju yang lumer dan gurih di setiap suapan",
+    name: "Es Strawberry",
+    price: 10000,
+    category: "Minuman",
+    image: "/products/strawberry.webp",
+    description:
+      "Kesegaran buah strawberry asli dipadu dengan susu segar dan es yang dingin",
   },
 ];
 
@@ -47,10 +59,15 @@ interface ProductCardProps {
 
 const ProductCard = ({ activeCategory }: ProductCardProps) => {
   const { addToCart } = useCart();
-  const [selectedProduct, setSelectedProduct] = useState<(typeof PRODUCTS)[0] | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<
+    (typeof PRODUCTS)[0] | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddToCart = (e: React.MouseEvent, product: (typeof PRODUCTS)[0]) => {
+  const handleAddToCart = (
+    e: React.MouseEvent,
+    product: (typeof PRODUCTS)[0],
+  ) => {
     e.stopPropagation();
     addToCart({
       id: product.id,
@@ -67,12 +84,13 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
   };
 
   const filteredProducts = PRODUCTS.filter(
-    (product) => activeCategory === "Semua" || product.category === activeCategory
+    (product) =>
+      activeCategory === "Semua" || product.category === activeCategory,
   );
 
   return (
     <div className="w-full relative min-h-[400px]">
-      <motion.div 
+      <motion.div
         layout
         className="flex flex-nowrap gap-6 md:gap-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-auto pb-12 pt-4 px-4 scrollbar-hide"
       >
@@ -106,7 +124,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
                   sizes="(max-width: 768px) 240px, 300px"
                   className="object-contain transition-all duration-700 group-hover:scale-110 group-hover:rotate-6 drop-shadow-xl p-6"
                 />
-                
+
                 {/* Overlay Actions */}
                 <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/10 backdrop-blur-[2px]">
                   <button
@@ -131,15 +149,19 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
               <div className="mt-5 px-2">
                 <div className="flex items-center gap-1 mb-2">
                   <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase">Top Seller</span>
+                  <span className="text-[10px] font-bold text-neutral-400 uppercase">
+                    Top Seller
+                  </span>
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-neutral-800 font-barlow truncate">
                   {product.name}
                 </h3>
-                
+
                 <div className="mt-3 flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-neutral-400 font-medium">Harga</p>
+                    <p className="text-xs text-neutral-400 font-medium">
+                      Harga
+                    </p>
                     <p className="text-lg font-black text-primary">
                       {new Intl.NumberFormat("id-ID", {
                         style: "currency",
@@ -166,13 +188,21 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
       </motion.div>
 
       {filteredProducts.length === 0 && (
-        <motion.div 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="absolute inset-0 flex flex-col items-center justify-center text-neutral-400"
         >
-           <Image src="/logo.png" alt="Empty" width={100} height={100} className="opacity-20 mb-4" />
-           <p className="font-barlow text-xl">Tidak ada produk di kategori ini.</p>
+          <Image
+            src="/logo.png"
+            alt="Empty"
+            width={100}
+            height={100}
+            className="opacity-20 mb-4"
+          />
+          <p className="font-barlow text-xl">
+            Tidak ada produk di kategori ini.
+          </p>
         </motion.div>
       )}
 

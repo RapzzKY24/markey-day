@@ -16,7 +16,7 @@ const HeroPages = () => {
         <div
           className="absolute inset-0 opacity-40 will-change-transform"
           style={{
-            backgroundImage: "url(/background.jpg)",
+            backgroundImage: "url(/background.webp)",
             backgroundSize: "600px",
           }}
         />
