@@ -32,7 +32,10 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     if (href.startsWith("#")) {
       e.preventDefault();
       const element = document.querySelector(href);
@@ -46,7 +49,7 @@ const Navbar = () => {
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
         setIsOpen(false);
       }
@@ -58,10 +61,14 @@ const Navbar = () => {
       <nav className="w-full max-w-7xl bg-white/90 backdrop-blur-md px-6 py-2 md:py-4 rounded-[2rem] shadow-xl border border-neutral-100 transition-all duration-300">
         <div className="flex items-center justify-between gap-4">
           {/* header */}
-          <Link href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center group">
+          <Link
+            href="#home"
+            onClick={(e) => handleNavClick(e, "#home")}
+            className="flex items-center group"
+          >
             <div className="relative w-12 h-12 md:w-16 lg:w-20 lg:h-20">
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Logo Mac And Yuk"
                 fill
                 className="object-contain"

@@ -1,4 +1,5 @@
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import React, { useRef } from "react";
 
 const TypingText = ({ children }: { children: React.ReactNode }) => {
@@ -61,17 +62,21 @@ const AboutSection = () => {
     <div className="relative w-full flex flex-col overflow-hidden">
       <div className="container mx-auto px-6 py-8 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-          {/* TODO: Replace with actual image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center items-center bg-neutral-100 rounded-2xl aspect-square md:aspect-auto md:h-[500px] border-2 border-dashed border-neutral-300"
+            className="relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[500px]"
           >
-            <p className="text-neutral-400 font-poppins text-sm md:text-base">
-              Ilustrasi / Gambar Mac n Yuk
-            </p>
+            <Image
+              src="/macnyuk.webp"
+              alt="Ilustrasi Mac n Yuk"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+              priority={false}
+            />
           </motion.div>
 
           {/* Konten */}
