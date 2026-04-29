@@ -1,7 +1,7 @@
 "use client";
 import { useScroll } from "framer-motion";
 import { motion } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
 type WordProps = {
   paragraph: string;
@@ -14,12 +14,9 @@ const Word = ({ paragraph }: WordProps) => {
     offset: ["start 0.9", "start 0.25"],
   });
 
-  useEffect(() => {
-    scrollYProgress.on("change", (e) => console.log(e));
-  }, [scrollYProgress]);
   return (
     <motion.p
-      className="p-2 max-w-xl text-md tracking-[0.2em] leading-[0.2em] text-justify font-poppins"
+      className="p-2 max-w-4xl font-light w-full md:text-md text-sm tracking-[0.2em]  text-justify font-poppins"
       ref={element}
       style={{ opacity: scrollYProgress }}
     >
