@@ -10,7 +10,7 @@ import ProductShowcaseParallax from "../components/parallax";
 
 export default function Home() {
   return (
-    <div className="pb-30">
+    <div>
       <AnnouncementModal />
       <div id="home">
         <HeroPages />
