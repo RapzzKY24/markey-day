@@ -37,8 +37,6 @@ export default function Home() {
         </div>
       </div>
       <section className="relative">
-        {/* <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b from-secondary/25 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-linear-to-t from-black/30 to-transparent" /> */}
         <div className="container mx-auto hidden px-4 pt-12 md:block md:pt-16">
           <HeaderSection
             title={["Product", "Showcase"]}
@@ -64,13 +62,6 @@ export default function Home() {
           <FeatureSection />
         </div>
       </div>
-      {/* <div id="team" className="relative w-full overflow-hidden bg-[#FDFBF7]">
-        <HeaderSection
-          title={["Our", "Executive", "Team"]}
-          description="Kenalan yuk sama orang dibalik layar"
-        />
-        <TeamSection />
-      </div> */}
       <div id="faq" className="relative w-full overflow-hidden bg-secondary/10">
         <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
           <HeaderSection

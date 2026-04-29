@@ -1,61 +1,63 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import React, { useRef } from "react";
+import Word from "../components/Word";
 
-const TypingText = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+const teks = `Mac n Yuk merupakan usaha kuliner yang menghadirkan berbagai olahan macaroni kekinian, seperti mac and cheese yang creamy, macaroni schotel yang gurih, hingga camilan makaroni yang cocok dinikmati kapan saja. Setiap menu dibuat dengan perpaduan rasa yang pas untuk memberikan pengalaman makan yang lezat dan memuaskan. Dengan cita rasa yang creamy dan cheesy, Mac n Yuk berkomitmen menghadirkan hidangan yang tidak hanya enak, tetapi juga memberikan kenyamanan di setiap gigitan. Setiap sajian diracik dengan bahan berkualitas untuk menjaga konsistensi rasa yang disukai banyak orang. Tak hanya makanan, Mac n Yuk juga menawarkan minuman segar seperti iced tea dengan strawberry jam yang memberikan sensasi manis dan menyegarkan. Kombinasi ini membuat Mac n Yuk cocok dinikmati oleh semua kalangan, baik untuk bersantai, berkumpul, maupun menemani aktivitas sehari-hari.`;
+// const TypingText = ({ children }: { children: React.ReactNode }) => {
+//   const ref = useRef<HTMLDivElement>(null);
+//   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.01,
-      },
-    },
-  };
+//   const containerVariants = {
+//     hidden: { opacity: 1 },
+//     visible: {
+//       opacity: 1,
+//       transition: {
+//         staggerChildren: 0.01,
+//       },
+//     },
+//   };
 
-  const childVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+//   const childVariants = {
+//     hidden: { opacity: 0 },
+//     visible: { opacity: 1 },
+//   };
 
-  const wrapText = (node: React.ReactNode): React.ReactNode => {
-    if (typeof node === "string") {
-      return node.split(" ").map((word, index) => (
-        <span
-          key={index}
-          className="inline-block whitespace-nowrap mr-[0.25em]"
-        >
-          {word.split("").map((char, charIndex) => (
-            <motion.span key={charIndex} variants={childVariants}>
-              {char}
-            </motion.span>
-          ))}
-        </span>
-      ));
-    }
-    if (React.isValidElement(node)) {
-      const element = node as React.ReactElement<any>;
-      return React.cloneElement(element, {
-        children: React.Children.map(element.props.children, wrapText),
-      } as any);
-    }
-    return node;
-  };
+//   const wrapText = (node: React.ReactNode): React.ReactNode => {
+//     if (typeof node === "string") {
+//       return node.split(" ").map((word, index) => (
+//         <span
+//           key={index}
+//           className="inline-block whitespace-nowrap mr-[0.25em]"
+//         >
+//           {word.split("").map((char, charIndex) => (
+//             <motion.span key={charIndex} variants={childVariants}>
+//               {char}
+//             </motion.span>
+//           ))}
+//         </span>
+//       ));
+//     }
+//     if (React.isValidElement(node)) {
+//       const element = node as React.ReactElement<any>;
+//       return React.cloneElement(element, {
+//         children: React.Children.map(element.props.children, wrapText),
+//       } as any);
+//     }
+//     return node;
+//   };
 
-  return (
-    <motion.div
-      ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-    >
-      {React.Children.map(children, wrapText)}
-    </motion.div>
-  );
-};
+//   return (
+//     <motion.div
+//       ref={ref}
+//       variants={containerVariants}
+//       initial="hidden"
+//       animate={isInView ? "visible" : "hidden"}
+//     >
+//       {React.Children.map(children, wrapText)}
+//     </motion.div>
+//   );
+// };
 
 const AboutSection = () => {
   return (
@@ -93,43 +95,7 @@ const AboutSection = () => {
               </h2>
             </motion.div>
 
-            <TypingText>
-              <div className="space-y-4 md:space-y-6">
-                <p className="text-sm md:text-base lg:text-[17px] font-light tracking-wide leading-relaxed text-neutral-700 text-justify">
-                  Mac n Yuk merupakan usaha kuliner yang menghadirkan berbagai
-                  olahan macaroni kekinian, seperti{" "}
-                  <span className="font-bold font-londrina text-primary uppercase ">
-                    mac and cheese
-                  </span>{" "}
-                  yang creamy,
-                  <span className="font-bold font-londrina text-primary uppercase ">
-                    {" "}
-                    macaroni schotel
-                  </span>{" "}
-                  yang gurih, hingga camilan makaroni yang cocok dinikmati kapan
-                  saja. Setiap menu dibuat dengan perpaduan rasa yang pas untuk
-                  memberikan pengalaman makan yang lezat dan memuaskan.
-                </p>
-                <p className="text-sm md:text-base lg:text-[17px] font-light tracking-wide leading-relaxed text-neutral-700 text-justify">
-                  Dengan cita rasa yang creamy dan cheesy, Mac n Yuk berkomitmen
-                  menghadirkan hidangan yang tidak hanya enak, tetapi juga
-                  memberikan kenyamanan di setiap gigitan. Setiap sajian diracik
-                  dengan bahan berkualitas untuk menjaga konsistensi rasa yang
-                  disukai banyak orang.
-                </p>
-                <p className="text-sm md:text-base lg:text-[17px] font-light tracking-wide leading-relaxed text-neutral-700 text-justify">
-                  Tak hanya makanan, Mac n Yuk juga menawarkan minuman segar
-                  seperti
-                  <span className="font-bold font-londrina text-primary uppercase ">
-                    iced tea dengan strawberry jam
-                  </span>{" "}
-                  yang memberikan sensasi manis dan menyegarkan. Kombinasi ini
-                  membuat Mac n Yuk cocok dinikmati oleh semua kalangan, baik
-                  untuk bersantai, berkumpul, maupun menemani aktivitas
-                  sehari-hari.
-                </p>
-              </div>
-            </TypingText>
+            <Word paragraph={teks} />
           </div>
         </div>
       </div>

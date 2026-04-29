@@ -34,7 +34,7 @@ const PRODUCTS = [
       "Sentuhan klasik macaroni dengan saus keju yang lumer dan gurih di setiap suapan",
   },
   {
-    id: 1,
+    id: 4,
     name: "Macaroni Mpruy",
     price: 10000,
     category: "Makanan",
