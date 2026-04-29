@@ -269,7 +269,7 @@ export default function ProductShowcaseParallax() {
                   </div>
 
                   <div className="max-w-[560px] text-[#f6f7fb] [text-shadow:0_8px_30px_rgba(0,0,0,0.4)]">
-                    <p className="text-xs uppercase tracking-[0.24em] text-[#f6f7fb80]">
+                    <p className="text-xs uppercase tracking-[0.24em] text-[#f6f7fbc4]">
                       Menu {String(index + 1).padStart(2, "0")} /{" "}
                       {String(PRODUCTS.length).padStart(2, "0")}
                     </p>
@@ -279,7 +279,7 @@ export default function ProductShowcaseParallax() {
                     <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                       {product.tagline}
                     </p>
-                    <p className="mt-4 max-w-[34ch] text-base leading-relaxed text-[#f6f7fbd1]">
+                    <p className="mt-4 max-w-[34ch] text-base leading-relaxed text-[#f6f7fbea]">
                       {product.description}
                     </p>
                     <div className="mt-8 flex items-center gap-6">
@@ -287,7 +287,7 @@ export default function ProductShowcaseParallax() {
                         {product.price}
                       </p>
                       <span className="h-8 w-px bg-white/25" />
-                      <p className="text-lg uppercase tracking-[0.14em] text-white/85">
+                      <p className="text-lg uppercase tracking-[0.14em] text-white">
                         Discover /{" "}
                         <span className="font-black text-white">Discover</span>{" "}
                         -

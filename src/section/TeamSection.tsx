@@ -92,7 +92,7 @@ const TeamSection = () => {
                 className={`relative z-10 whitespace-nowrap ${
                   activeTab === cat
                     ? "text-white"
-                    : "text-neutral-500 hover:text-neutral-800"
+                    : "text-neutral-600 hover:text-neutral-900"
                 }`}
               >
                 {cat}
@@ -124,7 +124,7 @@ const TeamSection = () => {
                 transition={{ duration: 0.3 }}
                 className="group flex flex-col p-4 bg-white rounded-3xl shadow-lg border border-neutral-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
               >
-                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100 mb-4">
+                <div className="relative mb-4 aspect-4/5 w-full overflow-hidden rounded-2xl bg-neutral-100">
                   {/* Category Pill on Image */}
                   <div className="absolute top-3 left-3 z-20">
                     <span className="px-3 py-1.5 bg-neutral-900/80 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 group-hover:bg-primary/90 shadow-sm border border-white/10">
@@ -147,7 +147,7 @@ const TeamSection = () => {
                   <h3 className="text-xl font-bold font-barlow text-neutral-900 leading-none">
                     {member.name}
                   </h3>
-                  <p className="text-sm font-medium text-neutral-500 mt-1">
+                  <p className="mt-1 text-sm font-medium text-neutral-700">
                     {member.role}
                   </p>
                 </div>

@@ -44,7 +44,7 @@ export default function Home() {
             title={["Product", "Showcase"]}
             description="Rasakan pengalaman visual menu terbaik kami"
           />
-          <p className="mx-auto mt-4 max-w-2xl pb-8 text-center text-sm leading-relaxed text-white/70 md:text-base">
+          <p className="mx-auto mt-4 max-w-2xl pb-8 text-center text-sm leading-relaxed text-white/90 md:text-base">
             Eksplorasi menu favorit Mac And Yuk dengan tampilan parallax
             sinematik yang halus, responsif, dan tetap selaras dengan identitas
             brand.
