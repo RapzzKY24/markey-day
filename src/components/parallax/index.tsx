@@ -105,6 +105,7 @@ export default function ProductShowcaseParallax() {
   const transitionWindow = 0.08;
   const navbarFocusStart = 0.32;
   const navbarFocusEnd = 0.62;
+  const totalGalleryPanels = PRODUCTS.length + 1;
 
   const scale4 = useTransform(
     smoothScrollProgress,
@@ -147,7 +148,7 @@ export default function ProductShowcaseParallax() {
   const galleryX = useTransform(
     smoothScrollProgress,
     [galleryStart, 1],
-    ["0vw", `-${PRODUCTS.length * 100}vw`],
+    ["0vw", `-${(totalGalleryPanels - 1) * 100}vw`],
   );
 
   useMotionValueEvent(smoothScrollProgress, "change", (latest) => {
