@@ -30,16 +30,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#171717] text-white pt-16 pb-8 px-6 overflow-hidden relative">
+    <footer className="relative overflow-hidden bg-[#171717] px-6 pt-24 pb-10 text-white md:pt-28">
       {/* Decorative Brand Text Background */}
-      <div className="absolute top-0 right-0 opacity-[0.03] select-none pointer-events-none translate-x-1/4 -translate-y-1/4">
-        <h2 className="text-[20rem] font-black font-londrina leading-none uppercase">
-          Mac Yuk
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.03]">
+        <h2 className="whitespace-nowrap text-[9rem] font-black font-londrina leading-none uppercase md:text-[16rem]">
+          Mac And Yuk
         </h2>
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="mb-20 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6 group w-fit">
