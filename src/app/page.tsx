@@ -7,8 +7,21 @@ import FeatureSection from "../section/FeatureSection";
 import FaqSection from "../section/FaqSection";
 import AnnouncementModal from "../components/AnnouncementModal";
 import ProductShowcaseParallax from "../components/parallax";
+import Lenis from "lenis";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
   return (
     <div>
       <AnnouncementModal />
