@@ -54,12 +54,12 @@ const HeaderSection = ({ title, description }: HeaderSectionProps) => {
             key={index}
             className="overflow-hidden mr-[0.4em] sm:mr-[0.6em] md:mr-4 lg:mr-8 last:mr-0"
           >
-            <motion.h1
+            <motion.h2
               variants={itemVariants}
               className="text-4xl sm:text-6xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-poppins tracking-[0.1rem] sm:tracking-[0.2rem] uppercase text-center"
             >
               {word}
-            </motion.h1>
+            </motion.h2>
           </div>
         ))}
       </motion.div>

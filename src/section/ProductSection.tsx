@@ -21,7 +21,9 @@ const ProductSection = () => {
           >
             <span
               className={`relative z-10 ${
-                activeCategory === category ? "text-white" : "text-neutral-500 hover:text-neutral-800"
+                activeCategory === category
+                  ? "text-white"
+                  : "text-neutral-600 hover:text-neutral-900"
               }`}
             >
               {category}

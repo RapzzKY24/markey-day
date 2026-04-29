@@ -84,9 +84,9 @@ const Navbar = () => {
                 priority
               />
             </div>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold font-barlow tracking-tight text-primary transition-colors">
+            <span className="text-2xl md:text-3xl lg:text-4xl font-bold font-barlow tracking-tight text-primary transition-colors">
               Mac And Yuk
-            </h1>
+            </span>
           </Link>
           <ul className="hidden md:flex items-center gap-4 lg:gap-8">
             {NAV_LINKS.map((link) => (
@@ -108,12 +108,13 @@ const Navbar = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label="Cek produk"
                 className="flex items-center justify-center gap-2 w-32 xl:w-44 py-2 xl:py-3 bg-background outline outline-foreground rounded-md hover:bg-foreground/5 transition-all duration-300 ease-in-out group/btn2"
               >
                 <Search className="w-4 h-4 xl:w-5 xl:h-5 text-primary" />
-                <h1 className="text-sm xl:text-lg text-primary font-light group-hover/btn2:font-bold transition-all whitespace-nowrap">
+                <span className="text-sm xl:text-lg text-primary font-light group-hover/btn2:font-bold transition-all whitespace-nowrap">
                   Cek Produk
-                </h1>
+                </span>
               </motion.button>
             </div>
 
@@ -121,12 +122,13 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsCartOpen(true)}
+                aria-label="Buka keranjang belanja"
               className="relative flex items-center justify-center gap-2 px-4 md:w-32 xl:w-44 py-2 xl:py-3 bg-primary rounded-md hover:bg-primary/80 shadow-md transition-all"
             >
               <ShoppingCart className="w-5 h-5 text-white" />
-              <h1 className="hidden md:block text-sm xl:text-lg text-white font-light transition-all whitespace-nowrap">
+                <span className="hidden md:block text-sm xl:text-lg text-white font-light transition-all whitespace-nowrap">
                 Keranjang
-              </h1>
+                </span>
               {totalItems > 0 && (
                 <motion.span
                   initial={{ scale: 0 }}
@@ -140,7 +142,11 @@ const Navbar = () => {
 
             {/* mobile & small tablet toggle */}
             <div className="md:hidden block">
-              <button onClick={handleClick} className="p-2">
+              <button
+                onClick={handleClick}
+                className="p-2"
+                aria-label={isOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+              >
                 {isOpen ? (
                   <XIcon className="w-8 h-8" />
                 ) : (

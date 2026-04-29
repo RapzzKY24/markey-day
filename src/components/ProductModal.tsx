@@ -59,7 +59,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
   const modalContent = (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-6">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -74,11 +74,12 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative w-full max-w-4xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-auto"
+            className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-[2.5rem] bg-white shadow-2xl md:max-h-auto md:flex-row"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
+              aria-label="Tutup detail produk"
               className="absolute top-6 right-6 z-10 p-2 bg-white/80 backdrop-blur-md hover:bg-white rounded-xl shadow-lg transition-all group"
             >
               <X className="w-6 h-6 text-neutral-800 group-hover:rotate-90 transition-transform duration-300" />
@@ -111,7 +112,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 ))}
-                <span className="text-xs text-neutral-400 ml-2">(48 Reviews)</span>
+                <span className="ml-2 text-xs text-neutral-600">(48 Reviews)</span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 font-barlow tracking-tight mb-2">
@@ -122,7 +123,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                 {formatPrice(product.price)}
               </div>
 
-              <p className="text-neutral-500 leading-relaxed mb-8 text-sm md:text-base">
+              <p className="mb-8 text-sm leading-relaxed text-neutral-700 md:text-base">
                 {product.description}. Dibuat dengan bahan berkualitas tinggi dan diproses secara higienis untuk menjamin rasa yang autentik dan kesegaran yang maksimal.
               </p>
 
@@ -148,7 +149,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
               </div>
 
               <div className="mt-8 pt-8 border-t border-neutral-100 flex items-center justify-between">
-                <div className="text-[10px] text-neutral-400 uppercase tracking-widest">
+                <div className="text-[10px] uppercase tracking-widest text-neutral-600">
                   SKU: MY-{product.id}00-24
                 </div>
                 <div className="flex gap-2">

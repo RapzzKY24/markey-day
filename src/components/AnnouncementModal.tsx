@@ -44,7 +44,7 @@ const AnnouncementModal = () => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -61,15 +61,16 @@ const AnnouncementModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 20, stiffness: 200 }}
-            className="relative w-full max-w-md bg-white rounded-[2rem] shadow-2xl overflow-hidden p-1"
+            className="relative w-full max-w-md overflow-hidden rounded-4xl bg-white p-1 shadow-2xl"
           >
             {/* Border gradient effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-[#D12052] opacity-20" />
+            <div className="absolute inset-0 bg-linear-to-br from-primary via-secondary to-[#D12052] opacity-20" />
 
             <div className="relative bg-white rounded-[1.8rem] overflow-hidden flex flex-col">
               {/* Close Button */}
               <button
                 onClick={handleClose}
+                aria-label="Tutup pengumuman promo"
                 className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full text-neutral-500 hover:text-neutral-900 transition-colors shadow-sm"
               >
                 <X className="w-5 h-5" />
@@ -141,7 +142,7 @@ const AnnouncementModal = () => {
                   <Tag className="w-5 h-5" />
                   Klaim Promo Sekarang!
                 </button>
-                <p className="text-[10px] text-neutral-400 mt-3 font-medium uppercase tracking-widest">
+                <p className="mt-3 text-[10px] font-medium uppercase tracking-widest text-neutral-600">
                   *Promo terbatas selama persediaan masih ada
                 </p>
               </div>

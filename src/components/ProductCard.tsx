@@ -105,7 +105,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
               transition={{ duration: 0.3 }}
               whileHover={{ y: -10 }}
               onClick={() => handleOpenModal(product)}
-              className="shrink-0 w-[240px] md:w-[300px] bg-white rounded-[2rem] p-4 shadow-xl shadow-neutral-200/50 group cursor-pointer border border-neutral-100 relative overflow-hidden"
+              className="relative w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-4xl border border-neutral-100 bg-white p-4 shadow-xl shadow-neutral-200/50 group md:w-[300px]"
             >
               {/* Tag */}
               <div className="absolute top-4 left-4 z-10">
@@ -115,7 +115,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
               </div>
 
               {/* Image Container */}
-              <div className="relative h-[200px] md:h-[260px] w-full flex items-center justify-center bg-neutral-50 rounded-[1.5rem] overflow-hidden transition-colors duration-500 group-hover:bg-primary/5">
+              <div className="relative flex h-[200px] w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-50 transition-colors duration-500 group-hover:bg-primary/5 md:h-[260px]">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -132,12 +132,14 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
                       e.stopPropagation();
                       handleOpenModal(product);
                     }}
+                    aria-label={`Lihat detail ${product.name}`}
                     className="p-3 bg-white text-primary rounded-2xl shadow-xl hover:bg-primary hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
                   >
                     <Eye className="w-5 h-5" />
                   </button>
                   <button
                     onClick={(e) => handleAddToCart(e, product)}
+                    aria-label={`Tambah ${product.name} ke keranjang`}
                     className="p-3 bg-primary text-white rounded-2xl shadow-xl hover:bg-neutral-900 transition-all transform translate-y-4 group-hover:translate-y-0 delay-75"
                   >
                     <ShoppingCart className="w-5 h-5" />
@@ -149,7 +151,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
               <div className="mt-5 px-2">
                 <div className="flex items-center gap-1 mb-2">
                   <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase">
+                  <span className="text-[10px] font-bold text-neutral-600 uppercase">
                     Top Seller
                   </span>
                 </div>
@@ -159,7 +161,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
 
                 <div className="mt-3 flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-neutral-400 font-medium">
+                    <p className="text-xs font-medium text-neutral-600">
                       Harga
                     </p>
                     <p className="text-lg font-black text-primary">
@@ -173,6 +175,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
                   <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={(e) => handleAddToCart(e, product)}
+                    aria-label={`Tambah ${product.name} ke keranjang`}
                     className="bg-neutral-900 text-white p-2.5 rounded-xl hover:bg-primary transition-colors"
                   >
                     <ShoppingCart className="w-4 h-4" />
@@ -181,7 +184,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
               </div>
 
               {/* Bottom Glow Effect */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute right-0 bottom-0 left-0 h-1 bg-linear-to-r from-transparent via-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </motion.div>
           ))}
         </AnimatePresence>
@@ -191,7 +194,7 @@ const ProductCard = ({ activeCategory }: ProductCardProps) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-neutral-400"
+          className="absolute inset-0 flex flex-col items-center justify-center text-neutral-600"
         >
           <Image
             src="/logo.png"
