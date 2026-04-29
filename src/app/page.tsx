@@ -6,6 +6,7 @@ import ProductSection from "../section/ProductSection";
 import FeatureSection from "../section/FeatureSection";
 import FaqSection from "../section/FaqSection";
 import AnnouncementModal from "../components/AnnouncementModal";
+import ProductShowcaseParallax from "../components/parallax";
 
 export default function Home() {
   return (
@@ -35,6 +36,22 @@ export default function Home() {
           <ProductSection />
         </div>
       </div>
+      <section className="relative bg-white/10">
+        {/* <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b from-secondary/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-linear-to-t from-black/30 to-transparent" /> */}
+        <div className="container mx-auto px-4 pt-12 md:pt-16">
+          <HeaderSection
+            title={["Product", "Showcase"]}
+            description="Rasakan pengalaman visual menu terbaik kami"
+          />
+          <p className="mx-auto mt-4 max-w-2xl pb-8 text-center text-sm leading-relaxed text-white/70 md:text-base">
+            Eksplorasi menu favorit Mac And Yuk dengan tampilan parallax
+            sinematik yang halus, responsif, dan tetap selaras dengan identitas
+            brand.
+          </p>
+        </div>
+        <ProductShowcaseParallax />
+      </section>
       <div
         id="features"
         className="relative w-full overflow-hidden bg-white/50"

@@ -6,6 +6,29 @@
   --primary: #f45b26;
   --secondary: #f8de22;
   --ternary: #d12052;
+  --navbar-offset: 92px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --navbar-offset: 120px;
+  }
+}
+
+html {
+  scroll-padding-top: var(--navbar-offset);
+}
+
+body [data-site-navbar="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+body.showcase-focus-mode [data-site-navbar="true"] {
+  opacity: 0;
+  transform: translateY(-18px);
+  pointer-events: none;
 }
 
 @theme inline {
