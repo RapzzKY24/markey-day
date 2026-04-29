@@ -55,7 +55,7 @@ export default function RootLayout({
         <CartProvider>
           <LoadingScreen />
           <Navbar />
-          <main className="grow">{children}</main>
+          <main className="grow pt-(--navbar-offset)">{children}</main>
           <Footer />
         </CartProvider>
       </body>
