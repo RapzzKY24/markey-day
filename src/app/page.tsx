@@ -36,10 +36,10 @@ export default function Home() {
           <ProductSection />
         </div>
       </div>
-      <section className="relative bg-white/10">
+      <section className="relative">
         {/* <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b from-secondary/25 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-linear-to-t from-black/30 to-transparent" /> */}
-        <div className="container mx-auto px-4 pt-12 md:pt-16">
+        <div className="container mx-auto hidden px-4 pt-12 md:block md:pt-16">
           <HeaderSection
             title={["Product", "Showcase"]}
             description="Rasakan pengalaman visual menu terbaik kami"
