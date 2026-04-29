@@ -16,7 +16,7 @@ const Word = ({ paragraph }: WordProps) => {
 
   return (
     <motion.p
-      className="p-2 max-w-4xl font-light w-full md:text-md text-sm tracking-[0.2em]  text-justify font-poppins"
+      className="p-2 max-w-4xl  w-full font-light md:text-md text-sm tracking-[0.2em]  text-justify font-poppins"
       ref={element}
       style={{ opacity: scrollYProgress }}
     >
