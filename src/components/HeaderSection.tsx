@@ -36,7 +36,7 @@ const HeaderSection = ({ title, description }: HeaderSectionProps) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: "-50px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light font-poppins text-primary text-center px-4 max-w-2xl mx-auto uppercase"
+        className="text-[16px] md:text-md lg:text-base font-light font-poppins text-primary text-center px-4 max-w-2xl mx-auto uppercase"
       >
         {description}
       </motion.p>

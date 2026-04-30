@@ -67,7 +67,7 @@ export default function Home() {
         id="features"
         className="relative w-full overflow-hidden bg-white/50"
       >
-        <div className="flex flex-col justify-center gap-y-6 pt-10 container mx-auto px-4 py-6">
+        <div className="flex flex-col justify-center gap-y-6 pt-20 pb-25 container mx-auto px-4 py-6">
           <HeaderSection
             title={["Kenapa", "Memilih", "Mac", "N", "Yuk?"]}
             description="Pilihan Terbaik Untuk Snack Anda"
