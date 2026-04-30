@@ -69,7 +69,7 @@ const FeatureSection = () => {
             y: -8,
             transition: { duration: 0.3, ease: "easeOut" },
           }}
-          className="bg-[#FFF8E7] rounded-3xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border border-primary/10 group relative overflow-hidden"
+          className="bg-[#FFF8E7] rounded-3xl p-8  flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border border-primary/10 group relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-linear-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
