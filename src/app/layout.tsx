@@ -7,6 +7,9 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import LoadingScreen from "../components/LoadingScreen";
+import { CartProvider } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
@@ -33,13 +36,43 @@ const barrio = Barrio({
 });
 
 export const metadata: Metadata = {
-  title: "Market Day : Mac And Yuk",
-  description: "Market Day Telkom University Jakarta",
-};
+  title: "Mac And Yuk",
+  description:
+    "Mac and Yuk merupakan usaha kuliner yang menghadirkan berbagai olahan macaroni kekinian seperti mac and cheese, macaroni schotel, dan camilan makaroni, serta minuman segar seperti lemon yakult soda dan iced tea dengan strawberry jam, dengan cita rasa creamy, cheesy, dan menyegarkan yang cocok untuk semua kalangan.",
 
-import LoadingScreen from "../components/LoadingScreen";
-import { CartProvider } from "../context/CartContext";
-import Footer from "../components/Footer";
+  metadataBase: new URL("https://mac-and-yuk.vercel.app/"),
+
+  openGraph: {
+    title: "Mac And Yuk",
+    description:
+      "Mac and Yuk merupakan usaha kuliner yang menghadirkan berbagai olahan macaroni kekinian seperti mac and cheese, macaroni schotel, dan camilan makaroni, serta minuman segar seperti lemon yakult soda dan iced tea dengan strawberry jam, dengan cita rasa creamy, cheesy, dan menyegarkan yang cocok untuk semua kalangan.",
+    url: "https://mac-and-yuk.vercel.app/",
+    siteName: "Mac And Yuk",
+    images: [
+      {
+        url: "/logo/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "Mac And Yuk Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Mac And Yuk",
+    description:
+      "Mac and Yuk merupakan usaha kuliner yang menghadirkan berbagai olahan macaroni kekinian seperti mac and cheese, macaroni schotel, dan camilan makaroni, serta minuman segar seperti lemon yakult soda dan iced tea dengan strawberry jam, dengan cita rasa creamy, cheesy, dan menyegarkan yang cocok untuk semua kalangan.",
+    images: ["/logo/android-chrome-512x512.png"],
+  },
+
+  icons: {
+    icon: "/logo/favicon.ico",
+    apple: "/logo/apple-touch-icon.png",
+  },
+};
 
 export default function RootLayout({
   children,
