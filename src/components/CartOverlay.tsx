@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -14,14 +15,22 @@ interface CartOverlayProps {
 
 const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const [mounted, setMounted] = useState(false);
-  const { cart, updateQuantity, removeFromCart, totalPrice, totalItems } =
-    useCart();
+  const { cart, updateQuantity, removeFromCart, totalPrice } = useCart();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
+
+  const whatsappNumber = "+6289508627182";
+
+  const handleCheckoutWhatsapp = () => {
+    const whatsappMessage = `Halo, saya ingin memesan produk berikut:\n\n${cart.map((item) => `${item.name} x${item.quantity}`).join("\n")}\n\nTotal: ${totalPrice}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, "_blank");
+    onClose();
+  };
 
   return createPortal(
     <AnimatePresence>
@@ -32,7 +41,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-9998 bg-black/40 backdrop-blur-sm"
           />
 
           <motion.div
@@ -40,7 +49,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 bottom-0 z-[9999] flex w-full max-w-md flex-col bg-white shadow-2xl"
+            className="fixed top-0 right-0 bottom-0 z-9999 flex w-full max-w-md flex-col bg-white shadow-2xl"
           >
             {/* Header Keranjang */}
             <div className="p-6 border-b flex items-center justify-between">
@@ -123,7 +132,10 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                   <span className="font-medium">Total</span>
                   <span className="font-bold text-primary">{totalPrice}</span>
                 </div>
-                <button className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                <button
+                  className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2"
+                  onClick={handleCheckoutWhatsapp}
+                >
                   <Send className="w-5 h-5" /> Pesan via WhatsApp
                 </button>
               </div>
