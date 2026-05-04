@@ -17,6 +17,8 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const [mounted, setMounted] = useState(false);
   const { cart, updateQuantity, removeFromCart, totalPrice } = useCart();
 
+  formatPrice(totalPrice);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -26,7 +28,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const whatsappNumber = "+6289508627182";
 
   const handleCheckoutWhatsapp = () => {
-    const whatsappMessage = `Halo, saya ingin memesan produk berikut:\n\n${cart.map((item) => `${item.name} x${item.quantity}`).join("\n")}\n\nTotal: ${totalPrice}`;
+    const whatsappMessage = `Halo Mimin, aku mau memesan produk berikut:\n\n${cart.map((item) => `${formatProductName(item.name)} x${formatQuantity(item.quantity)}`).join("\n")}\n\nTotal: ${formatPrice(totalPrice)}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, "_blank");
     onClose();
@@ -130,7 +132,9 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
               <div className="p-6 border-t bg-neutral-50">
                 <div className="flex justify-between mb-4">
                   <span className="font-medium">Total</span>
-                  <span className="font-bold text-primary">{totalPrice}</span>
+                  <span className="font-bold text-primary">
+                    {formatPrice(totalPrice)}
+                  </span>
                 </div>
                 <button
                   className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2"
@@ -149,3 +153,19 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
 };
 
 export default CartOverlay;
+
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  }).format(price);
+};
+
+const formatQuantity = (quantity: number) => {
+  return quantity.toString().padStart(2, "0");
+};
+
+const formatProductName = (name: string) => {
+  return name.length > 20 ? name.slice(0, 20) + "..." : name;
+};
