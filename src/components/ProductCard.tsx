@@ -34,7 +34,7 @@ const PRODUCTS = [
   {
     id: 4,
     name: "Bundle Macaroni And Cheese,Macaroni Schotel,Macaroni Mpruy,Es Strawberry",
-    price: 28000,
+    price: 35000,
     category: "Bundle",
     image: "/products/bundle.webp",
     description: "Bundle Hemat dengan 2 produk yang disajikan bersama",
