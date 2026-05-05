@@ -4,7 +4,7 @@ import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { motion } from "framer-motion";
 
-const CATEGORIES = ["Semua", "Makanan", "Minuman"];
+const CATEGORIES = ["Semua", "Bundle", "Makanan", "Minuman"];
 
 const ProductSection = () => {
   const [activeCategory, setActiveCategory] = useState("Semua");
