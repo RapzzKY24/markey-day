@@ -10,6 +10,7 @@ import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import { CartProvider } from "../context/CartContext";
 import Footer from "../components/Footer";
+import LenisLayoutInner from "./LenisLayoutInner";
 
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
@@ -85,12 +86,14 @@ export default function RootLayout({
       className={`${barlowCondensed.className} ${poppins.variable} ${londrina.variable} ${barrio.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
-        <CartProvider>
-          <LoadingScreen />
-          <Navbar />
-          <main className="grow">{children}</main>
-          <Footer />
-        </CartProvider>
+        <LenisLayoutInner>
+          <CartProvider>
+            <LoadingScreen />
+            <Navbar />
+            <main className="grow">{children}</main>
+            <Footer />
+          </CartProvider>
+        </LenisLayoutInner>
       </body>
     </html>
   );
