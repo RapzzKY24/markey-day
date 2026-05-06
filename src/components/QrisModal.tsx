@@ -5,6 +5,8 @@ import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X, Scan } from "lucide-react";
 import Image from "next/image";
+import { useCart } from "../context/CartContext";
+import { formatPrice } from "../utils/utils";
 
 interface QrisModalProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface QrisModalProps {
 }
 
 const QrisModal: React.FC<QrisModalProps> = ({ isOpen, onClose }) => {
+  const { totalPrice } = useCart();
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -86,7 +89,7 @@ const QrisModal: React.FC<QrisModalProps> = ({ isOpen, onClose }) => {
                     className="object-contain"
                   />
                 </div>
-
+                <p className="text-2xl font-bold"> {formatPrice(totalPrice)}</p>
                 <div className="text-center space-y-1">
                   <p className="text-sm font-semibold text-neutral-700">
                     Scan QR Code di atas

@@ -29,9 +29,19 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const whatsappNumber = "+6289508627182";
 
   const handleCheckoutWhatsapp = () => {
-    const whatsappMessage = `Halo Mimin, aku mau memesan produk berikut:\n\n${cart
-      .map((item) => `${item.name} x${item.quantity}`)
-      .join("\n")}\n\nTotal: ${formatPrice(totalPrice)}`;
+    const whatsappMessage = `Halo Mimin 
+                              Perkenalkan, saya [nama].
+
+                              Saya ingin melakukan pemesanan untuk [hari/tanggal]\n.
+
+                              Daftar Pesanan:
+                              ${cart.map((item) => `- ${item.name} x${item.quantity}`).join("\n")}
+
+                              Total: ${formatPrice(totalPrice)}
+
+                              Mohon konfirmasi ketersediaan dan total pembayarannya ya
+                              Terima kasih!`;
+
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, "_blank");
     onClose();
@@ -152,15 +162,6 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                   </div>
 
                   <div className="flex flex-col gap-3">
-                    {/* WhatsApp */}
-                    <button
-                      className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-                      onClick={handleCheckoutWhatsapp}
-                    >
-                      <Send className="w-5 h-5" />
-                      Konfirmasi Pesanan
-                    </button>
-
                     {/* QRIS */}
                     <button
                       className="w-full bg-primary text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
@@ -168,6 +169,14 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                     >
                       <Scan className="w-5 h-5" />
                       Bayar via QRIS
+                    </button>
+                    {/* WhatsApp */}
+                    <button
+                      className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                      onClick={handleCheckoutWhatsapp}
+                    >
+                      <Send className="w-5 h-5" />
+                      Konfirmasi Pesanan
                     </button>
                   </div>
                 </div>
