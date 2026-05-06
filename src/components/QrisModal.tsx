@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { createPortal as reactDomCreatePortal } from "react-dom";
-import { X, Scan, CheckCircle2 } from "lucide-react";
+import { X, Scan } from "lucide-react";
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
 import { formatPrice } from "../utils/utils";
@@ -101,7 +101,7 @@ const QrisModal: React.FC<QrisModalProps> = ({
                 </div>
 
                 <div className="text-center mb-6">
-                  <h3 className="text-4xl font-extrabold text-orange-600 tracking-tight">
+                  <h3 className="text-2xl font-extrabold text-orange-600 tracking-tight">
                     {formatPrice(totalPrice)}
                   </h3>
                 </div>
