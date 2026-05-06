@@ -29,18 +29,21 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const whatsappNumber = "+6289508627182";
 
   const handleCheckoutWhatsapp = () => {
-    const whatsappMessage = `Halo Mimin 
-                              Perkenalkan, saya [nama].
+    const whatsappMessage = `Halo Mimin
 
-                              Saya ingin melakukan pemesanan untuk [hari/tanggal]\n.
+Perkenalkan, saya [Nama].
+Saya ingin melakukan pemesanan dengan detail berikut:
 
-                              Daftar Pesanan:
-                              ${cart.map((item) => `- ${item.name} x${item.quantity}`).join("\n")}
+Tanggal: [Hari/Tanggal]
 
-                              Total: ${formatPrice(totalPrice)}
+Daftar Pesanan:
+${cart.map((item) => `• ${item.name} x${item.quantity}`).join("\n")}
 
-                              Mohon konfirmasi ketersediaan dan total pembayarannya ya
-                              Terima kasih!`;
+Total: ${formatPrice(totalPrice)}
+
+Mohon konfirmasi ketersediaan pesanan serta total pembayaran yang harus saya lakukan.
+
+Terima kasih`;
 
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, "_blank");
