@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, ShoppingCart, Trash2, Plus, Minus, Send, Scan } from "lucide-react";
+import { X, Trash2, Plus, Minus, Scan } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { formatPrice } from "../utils/utils";
 import QrisModal from "./QrisModal";
+import OrderFormModal from "./OrderFormModal";
 
 interface CartOverlayProps {
   isOpen: boolean;
@@ -17,171 +18,189 @@ interface CartOverlayProps {
 const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const [mounted, setMounted] = useState(false);
   const { cart, updateQuantity, removeFromCart, totalPrice } = useCart();
+
+  const [showForm, setShowForm] = useState(false);
+  const [nama, setNama] = useState("");
+  const [waktuAmbil, setWaktuAmbil] = useState("");
+  const [metode, setMetode] = useState<"Qris" | "Tunai">("Qris");
+
+  const [orderId, setOrderId] = useState("");
+  const [loading, setLoading] = useState(false);
   const [isQrisOpen, setIsQrisOpen] = useState(false);
 
+  const whatsappNumber = "6289508627182";
+
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
 
-  const whatsappNumber = "+6289508627182";
+  const handleSubmitOrder = async () => {
+    if (!nama || !waktuAmbil) {
+      return;
+    }
 
-  const handleCheckoutWhatsapp = () => {
-    const whatsappMessage = `Halo Mimin
+    setLoading(true);
+    const produk = cart
+      .map((item) => `${item.name} x${item.quantity}`)
+      .join(", ");
 
-Perkenalkan, saya [Nama].
-Saya ingin melakukan pemesanan dengan detail berikut:
+    try {
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nama,
+          produk,
+          qty: cart.reduce((acc, item) => acc + item.quantity, 0),
+          waktuAmbil,
+          metode,
+        }),
+      });
 
-Tanggal: [Hari/Tanggal]
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Gagal membuat pesanan");
 
-Daftar Pesanan:
-${cart.map((item) => `• ${item.name} x${item.quantity}`).join("\n")}
+      setOrderId(data.orderId);
+      setShowForm(false);
 
-Total: ${formatPrice(totalPrice)}
+      if (metode === "Qris") {
+        setIsQrisOpen(true);
+      } else {
+        handleConfirmWhatsapp(data.orderId);
+      }
+    } catch (err) {
+      console.error("❌ ERROR:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-Mohon konfirmasi ketersediaan pesanan serta total pembayaran yang harus saya lakukan.
+  const handleConfirmWhatsapp = (id?: string) => {
+    const finalId = id || orderId;
+    const produkList = cart
+      .map((item) => `• ${item.name} x${item.quantity}`)
+      .join("\n");
 
-Terima kasih`;
+    const message = `Halo Mimin\n\nOrder ID: ${finalId}\nNama: ${nama}\n\nPesanan:\n${produkList}\n\nTotal: ${formatPrice(totalPrice)}\n\n${
+      metode === "Qris"
+        ? "Saya sudah bayar via QRIS"
+        : "Saya akan bayar di tempat (Tunai)"
+    }`;
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, "_blank");
-    onClose();
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+    );
   };
 
   return createPortal(
     <>
-      {/* Cart Overlay */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
               onClick={onClose}
-              className="fixed inset-0 z-9998 bg-black/40 backdrop-blur-sm"
             />
 
-            {/* Panel */}
             <motion.div
+              className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white z-50 flex flex-col shadow-2xl"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 z-9999 flex w-full max-w-md flex-col bg-white shadow-2xl"
             >
-              {/* Header */}
-              <div className="p-6 border-b flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <ShoppingCart className="w-6 h-6 text-primary" />
-                  <h2 className="text-2xl font-bold font-barlow text-primary">
-                    Keranjang Belanja
-                  </h2>
-                </div>
+              {/* HEADER */}
+              <div className="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
+                <h2 className="font-bold text-xl">Keranjang Belanja</h2>
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-neutral-100 rounded-full transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
-                  <X className="w-6 h-6" />
+                  <X />
                 </button>
               </div>
 
-              {/* List Produk */}
-              <div className="flex-1 overflow-y-auto p-6">
+              {/* LIST ITEMS */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {cart.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center">
-                    <ShoppingCart className="w-10 h-10 text-neutral-300 mb-4" />
-                    <p className="text-neutral-500">Keranjang Kosong</p>
+                  <div className="text-center py-10 text-gray-500">
+                    Keranjang masih kosong
                   </div>
                 ) : (
-                  <div className="space-y-6">
-                    {cart.map((item) => (
-                      <div key={item.id} className="flex gap-4">
-                        <div className="relative w-20 h-20 bg-neutral-100 rounded-xl overflow-hidden shrink-0">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fill
-                            className="object-contain p-2"
-                          />
-                        </div>
-                        <div className="flex-1 space-y-2">
-                          <h4 className="font-bold ">{item.name}</h4>
-                          <div className="flex items-center justify-between mt-2">
-                            <div className="flex items-center border rounded-lg">
-                              <button
-                                onClick={() =>
-                                  updateQuantity(item.id, item.quantity - 1)
-                                }
-                                className="p-1"
-                              >
-                                <Minus className="w-4 h-4" />
-                              </button>
-                              <span className="px-2 text-sm">
-                                {item.quantity}
-                              </span>
-                              <button
-                                onClick={() =>
-                                  updateQuantity(item.id, item.quantity + 1)
-                                }
-                                className="p-1"
-                              >
-                                <Plus className="w-4 h-4" />
-                              </button>
-                            </div>
+                  cart.map((item) => (
+                    <div key={item.id} className="flex gap-4 items-center">
+                      <div className="w-20 h-20 relative bg-gray-50 rounded-lg p-2">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+
+                      <div className="flex-1">
+                        <h4 className="font-bold text-gray-800">{item.name}</h4>
+                        <p className="text-primary font-semibold text-sm">
+                          {formatPrice(item.price)}
+                        </p>
+
+                        <div className="flex justify-between items-center mt-3">
+                          <div className="flex items-center gap-3 border rounded-lg px-2 py-1">
                             <button
-                              onClick={() => removeFromCart(item.id)}
-                              className="text-red-500"
+                              onClick={() =>
+                                updateQuantity(item.id, item.quantity - 1)
+                              }
+                              className="text-gray-500 hover:text-primary"
                             >
-                              <Trash2 className="w-4 h-4" />
+                              <Minus size={18} />
+                            </button>
+                            <span className="w-5 text-center font-medium">
+                              {item.quantity}
+                            </span>
+                            <button
+                              onClick={() =>
+                                updateQuantity(item.id, item.quantity + 1)
+                              }
+                              className="text-gray-500 hover:text-primary"
+                            >
+                              <Plus size={18} />
                             </button>
                           </div>
-                          <div className="space-y-0.5">
-                            <p className="text-sm text-neutral-400 font-medium">
-                              {item.quantity} x {formatPrice(item.price)}
-                            </p>
-                            <p className="text-base font-bold text-primary">
-                              {formatPrice(item.price * item.quantity)}
-                            </p>
-                          </div>
+
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            className="p-2 text-red-400 hover:text-red-600 transition-colors"
+                          >
+                            <Trash2 size={20} />
+                          </button>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))
                 )}
               </div>
 
-              {/* Footer Checkout */}
+              {/* FOOTER */}
               {cart.length > 0 && (
-                <div className="p-6 border-t bg-neutral-50">
-                  <div className="flex justify-between mb-4">
-                    <span className="font-medium">Total</span>
-                    <span className="font-bold text-primary">
+                <div className="p-6 border-t bg-gray-50">
+                  <div className="flex justify-between mb-4 items-center">
+                    <span className="text-gray-600">Total Pembayaran</span>
+                    <span className="font-bold text-2xl text-primary">
                       {formatPrice(totalPrice)}
                     </span>
                   </div>
 
-                  <div className="flex flex-col gap-3">
-                    {/* QRIS */}
-                    <button
-                      className="w-full bg-primary text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-                      onClick={() => setIsQrisOpen(true)}
-                    >
-                      <Scan className="w-5 h-5" />
-                      Bayar via QRIS
-                    </button>
-                    {/* WhatsApp */}
-                    <button
-                      className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-                      onClick={handleCheckoutWhatsapp}
-                    >
-                      <Send className="w-5 h-5" />
-                      Konfirmasi Pesanan
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => setShowForm(true)}
+                    className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all"
+                  >
+                    <Scan size={20} /> Checkout Sekarang
+                  </button>
                 </div>
               )}
             </motion.div>
@@ -189,7 +208,24 @@ Terima kasih`;
         )}
       </AnimatePresence>
 
-      <QrisModal isOpen={isQrisOpen} onClose={() => setIsQrisOpen(false)} />
+      <OrderFormModal
+        isOpen={showForm}
+        onClose={() => setShowForm(false)}
+        nama={nama}
+        setNama={setNama}
+        waktuAmbil={waktuAmbil}
+        setWaktuAmbil={setWaktuAmbil}
+        metode={metode}
+        setMetode={setMetode}
+        onSubmit={handleSubmitOrder}
+        loading={loading}
+      />
+
+      <QrisModal
+        isOpen={isQrisOpen}
+        onClose={() => setIsQrisOpen(false)}
+        onConfirm={() => handleConfirmWhatsapp()}
+      />
     </>,
     document.body,
   );
