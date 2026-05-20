@@ -230,7 +230,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                       className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all"
                     >
                       <Scan size={20} />
-                      Order Market Day
+                      Pre-Order Market Day
                     </button>
                   </div>
                 </div>
