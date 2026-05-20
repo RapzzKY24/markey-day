@@ -71,7 +71,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
         handleConfirmWhatsapp(data.orderId);
       }
     } catch (err) {
-      console.error("❌ ERROR:", err);
+      console.error("ERROR:", err);
     } finally {
       setLoading(false);
     }
@@ -91,6 +91,30 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
 
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+    );
+  };
+
+  const handlePreOrder = () => {
+    const produkList = cart
+      .map((item) => `• ${item.name} x${item.quantity}`)
+      .join("\n");
+
+    const message = `Halo Mimin
+
+                    Saya mau pre-order untuk Market Day.
+
+                    Pesanan:
+                    ${produkList}
+
+                    Total: ${formatPrice(totalPrice)}
+
+                    Nama:
+                    Waktu ambil:
+                    Catatan:`;
+
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank",
     );
   };
 
@@ -194,13 +218,21 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                       {formatPrice(totalPrice)}
                     </span>
                   </div>
-
-                  <button
-                    onClick={() => setShowForm(true)}
-                    className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all"
-                  >
-                    <Scan size={20} /> Checkout Sekarang
-                  </button>
+                  <div className="flex flex-col justify-center gap-4">
+                    <button
+                      onClick={() => setShowForm(true)}
+                      className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all"
+                    >
+                      <Scan size={20} /> Checkout Sekarang
+                    </button>
+                    <button
+                      onClick={handlePreOrder}
+                      className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all"
+                    >
+                      <Scan size={20} />
+                      Order Market Day
+                    </button>
+                  </div>
                 </div>
               )}
             </motion.div>
