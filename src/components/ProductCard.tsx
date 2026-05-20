@@ -10,7 +10,7 @@ const PRODUCTS = [
   {
     id: 1,
     name: "Bundle Macaroni Schotel & Es Teh Strawberry",
-    price: 20000,
+    price: 21000,
     category: "Bundle",
     image: "/products/bundle.webp",
     description: "Bundle Hemat dengan 2 produk yang disajikan bersama",
@@ -18,7 +18,7 @@ const PRODUCTS = [
   {
     id: 2,
     name: "Bundle Macaroni And Cheese & Es Teh Strawberry",
-    price: 22000,
+    price: 23000,
     category: "Bundle",
     image: "/products/bundle.webp",
     description: "Bundle Hemat dengan 2 produk yang disajikan bersama",
@@ -26,7 +26,7 @@ const PRODUCTS = [
   {
     id: 3,
     name: "Bundle Macaroni And Cheese,Macaroni Mpruy,Es Strawberry",
-    price: 28000,
+    price: 29000,
     category: "Bundle",
     image: "/products/bundle.webp",
     description: "Bundle Hemat dengan 2 produk yang disajikan bersama",
@@ -34,7 +34,7 @@ const PRODUCTS = [
   {
     id: 4,
     name: "Bundle Macaroni And Cheese,Macaroni Schotel,Macaroni Mpruy,Es Strawberry",
-    price: 35000,
+    price: 36000,
     category: "Bundle",
     image: "/products/bundle.webp",
     description: "Bundle Hemat dengan 2 produk yang disajikan bersama",
@@ -51,7 +51,7 @@ const PRODUCTS = [
   {
     id: 6,
     name: "Macaroni n Cheese",
-    price: 17000,
+    price: 18000,
     category: "Makanan",
     image: "/products/cheese.webp",
     description:
