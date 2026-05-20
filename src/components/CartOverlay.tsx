@@ -15,13 +15,14 @@ interface CartOverlayProps {
   onClose: () => void;
 }
 
+const MARKET_DAY_PICKUP = "Market Day - 23 Mei 2026";
+
 const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const [mounted, setMounted] = useState(false);
   const { cart, updateQuantity, removeFromCart, totalPrice } = useCart();
 
   const [showForm, setShowForm] = useState(false);
   const [nama, setNama] = useState("");
-  const [waktuAmbil, setWaktuAmbil] = useState("");
   const [metode, setMetode] = useState<"Qris" | "Tunai">("Qris");
 
   const [orderId, setOrderId] = useState("");
@@ -37,11 +38,10 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   if (!mounted) return null;
 
   const handleSubmitOrder = async () => {
-    if (!nama || !waktuAmbil) {
-      return;
-    }
+    if (!nama) return;
 
     setLoading(true);
+
     const produk = cart
       .map((item) => `${item.name} x${item.quantity}`)
       .join(", ");
@@ -54,13 +54,16 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
           nama,
           produk,
           qty: cart.reduce((acc, item) => acc + item.quantity, 0),
-          waktuAmbil,
+          waktuAmbil: MARKET_DAY_PICKUP,
           metode,
         }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Gagal membuat pesanan");
+
+      if (!res.ok) {
+        throw new Error(data.error || "Gagal membuat pesanan");
+      }
 
       setOrderId(data.orderId);
       setShowForm(false);
@@ -71,7 +74,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
         handleConfirmWhatsapp(data.orderId);
       }
     } catch (err) {
-      console.error("❌ ERROR:", err);
+      console.error("ERROR:", err);
     } finally {
       setLoading(false);
     }
@@ -79,18 +82,31 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
 
   const handleConfirmWhatsapp = (id?: string) => {
     const finalId = id || orderId;
+
     const produkList = cart
       .map((item) => `• ${item.name} x${item.quantity}`)
       .join("\n");
 
-    const message = `Halo Mimin\n\nOrder ID: ${finalId}\nNama: ${nama}\n\nPesanan:\n${produkList}\n\nTotal: ${formatPrice(totalPrice)}\n\n${
-      metode === "Qris"
-        ? "Saya sudah bayar via QRIS"
-        : "Saya akan bayar di tempat (Tunai)"
-    }`;
+    const message = `Halo Mimin
+
+Order ID: ${finalId}
+Nama: ${nama}
+Waktu Ambil: ${MARKET_DAY_PICKUP}
+
+Pesanan:
+${produkList}
+
+Total: ${formatPrice(totalPrice)}
+
+${
+  metode === "Qris"
+    ? "Saya sudah bayar via QRIS"
+    : "Saya akan bayar di tempat (Tunai)"
+}`;
 
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank",
     );
   };
 
@@ -114,9 +130,9 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
             >
-              {/* HEADER */}
               <div className="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
                 <h2 className="font-bold text-xl">Keranjang Belanja</h2>
+
                 <button
                   onClick={onClose}
                   className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -125,7 +141,6 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                 </button>
               </div>
 
-              {/* LIST ITEMS */}
               <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {cart.length === 0 ? (
                   <div className="text-center py-10 text-gray-500">
@@ -159,9 +174,11 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                             >
                               <Minus size={18} />
                             </button>
+
                             <span className="w-5 text-center font-medium">
                               {item.quantity}
                             </span>
+
                             <button
                               onClick={() =>
                                 updateQuantity(item.id, item.quantity + 1)
@@ -185,7 +202,6 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                 )}
               </div>
 
-              {/* FOOTER */}
               {cart.length > 0 && (
                 <div className="p-6 border-t bg-gray-50">
                   <div className="flex justify-between mb-4 items-center">
@@ -199,7 +215,8 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
                     onClick={() => setShowForm(true)}
                     className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all"
                   >
-                    <Scan size={20} /> Checkout Sekarang
+                    <Scan size={20} />
+                    Checkout Pesanan
                   </button>
                 </div>
               )}
@@ -213,8 +230,6 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
         onClose={() => setShowForm(false)}
         nama={nama}
         setNama={setNama}
-        waktuAmbil={waktuAmbil}
-        setWaktuAmbil={setWaktuAmbil}
         metode={metode}
         setMetode={setMetode}
         onSubmit={handleSubmitOrder}
